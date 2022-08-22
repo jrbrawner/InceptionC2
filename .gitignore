@@ -1,0 +1,4 @@
+*/__pycache__
+record.log
+app/development.db
+/venv
