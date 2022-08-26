@@ -1,5 +1,9 @@
-<p>Welcome to Inception</p>
+{% extends "base.html" %}
 
+{% block content %}
+
+<title>Inception</title>
+<p style="text-align:center;">Welcome to Inception</p>
 
 <form action="{{ url_for('index') }}" method="post"> 
     <p>Start Server</p>
@@ -11,3 +15,5 @@
     <textarea name="message" rows="2" cols="30"></textarea>
     <input type="submit" value ="Send Message">
 </form>
+
+{% endblock %}

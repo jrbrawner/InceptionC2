@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<title>Manage Beacons</title>
+
+<h2 style="text-align:center;">Beacons</h2>
+
+<p style="text-align:center;">Server Name: {{server.name}}</p>
+<table>
+    <tr>
+        <th>Beacon Name</th>
+        <th>Beacon IP</th>
+        <th>Beacon Port</th>
+        <th>Beacon Hostname</th>
+        <th></th>
+    </tr>
+    {% for i in server.connection_list.values() %}
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.ip}}</td>
+        <td>{{i.beacon_port}}</td>
+        <td>{{i.hostname}}</td>
+
+        <td>
+            <form action="{{ url_for('manage') }}" method="post">
+                <input type="hidden" name="beacon_name" value="{{i.name}}">
+                <input type="submit" value="Send Message to Beacon">
+                <input type="text" name="beacon_message">
+            </form>
+        </td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
