@@ -1,0 +1,24 @@
+FROM ubuntu:23.04
+
+#ubuntu packages
+RUN apt-get update
+RUN apt-get install -y \
+    python3.11 \
+    python3-pip \
+    python3.11-venv \
+    wget \ 
+    nano
+
+# Fast API
+
+WORKDIR /code
+
+COPY api/requirements.txt /code/api/
+RUN python3 -m venv venv
+RUN venv/bin/pip install --no-cache-dir --upgrade -r /code/api/requirements.txt
+COPY ./api /code/api/
+ENV PYTHONPATH "${PYTHONPATH}:/code/api/"
+
+EXPOSE 8000
+
+CMD ["venv/bin/uvicorn", "api.src.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
