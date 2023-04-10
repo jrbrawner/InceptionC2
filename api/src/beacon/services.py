@@ -4,9 +4,12 @@ import socket
 
 def create_beacon(db: Session, name: str) -> Beacon:
     """Create a beacon based on user parameters."""
-    if db.query(Beacon).filter(Beacon.name == name) == None:
+    if db.query(Beacon).filter(Beacon.name == name).first() == None:
         beacon = Beacon(
-            name=name
+            name=name,
+            hostname=None,
+            ip=None,
+            port=None,
         )
         db.add(beacon)
         db.commit()
