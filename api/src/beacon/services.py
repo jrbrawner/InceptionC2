@@ -20,3 +20,7 @@ def get_all_beacons(db: Session) -> list[Beacon]:
     """Return all beacons in the database."""
     beacons = db.query(Beacon).all()
     return beacons
+
+PAYLOADS FOLDER
+TEMPLATES
+NC PAYLOAD
